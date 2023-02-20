@@ -1,0 +1,10 @@
+extends layout 
+
+block content 
+    h1 #{title}
+
+    each user in user_list
+        #{user.first_name #user.last_name} 
+
+    else 
+        p There are no users.
