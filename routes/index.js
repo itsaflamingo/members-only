@@ -14,4 +14,7 @@ router.get('/', function(req, res, next) {
 router.get("/sign-up", user_controller.user_create_get);
 router.post("/sign-up", user_controller.user_create_post);
 
+// MESSAGE ROUTES
+router.post('/chat', message_controller.create_message);
+
 module.exports = router;

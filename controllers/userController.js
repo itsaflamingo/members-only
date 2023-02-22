@@ -2,6 +2,7 @@ const User = require('../models/user');
 const async = require('async');
 const { body, validationResult, custom, check } = require('express-validator');
 const bcrypt = require('bcryptjs');
+const messages = require('../models/message').model('Message');
 
 exports.user_create_get = (req, res, next) => {
     res.render('sign-up', { title: "Sign Up" });
@@ -59,13 +60,13 @@ exports.user_create_post = [
                 last_name: req.body.last_name,
                 username: req.body.username,
                 password: hashedPassword,
-                confirm_password: req.body.confirm_password,
+                confirm_password: hashedPassword,
                 membership_status: 'Member'
             }).save(err => {
                 if(err) {
                     return next(err);
                 }
-                res.render('chat', { user: req.body });
+                res.render('chat', { user: req.body, message_list: messages });
             })
         })    
     }
